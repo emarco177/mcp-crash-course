@@ -1,4 +1,11 @@
 # MCP Crash Course 🚀
+![MCP Tool Call Demo](/static/mcp-tool-call.gif)
+
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/EdenMarco177?style=social)](https://twitter.com/EdenMarco177)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
+[![udemy](https://img.shields.io/badge/MCP%20Udemy%20Course-ODSC%20Coupon%20%2412.99-brightgreen)](https://www.udemy.com/course/langgraph/?couponCode=APRIL-2025)
 
 Welcome to the MCP Crash Course! This repository is designed to teach you the fundamentals and advanced concepts of the Model Context Protocol (MCP) in a hands-on way.
 
@@ -32,7 +39,7 @@ Before you start, make sure you have the following installed:
 *   🐍 Python (version 3.10 or higher)
 *   📦 `uv` (the fast Python package installer and resolver)
 *   ✨ Cursor IDE
-*   ☁️ Cloud Desktop
+*   ☁️ Claude Desktop
 
 ## Getting Started ▶️
 
@@ -57,4 +64,10 @@ Contributions are welcome! If you'd like to add a new topic or improve an existi
 3.  Make your changes, ensuring each commit represents a logical step in the learning process.
 4.  Open a Pull Request against the `main` branch.
 
+## License 📄
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
 Happy learning! 🎉
+
+
