@@ -1,84 +1,60 @@
-# MCP Terminal Server
+# MCP Crash Course 🚀
 
-A simple MCP (Model Context Protocol) server that exposes terminal commands and access to pictures.
+Welcome to the MCP Crash Course! This repository is designed to teach you the fundamentals and advanced concepts of the Model Context Protocol (MCP) in a hands-on way.
 
-## Setup
+## What is MCP? 💡
 
-1. Install the required dependencies:
+The Model Context Protocol (MCP) helps connect AI-agentic applications powered by Large Language Models (LLMs) to external tools and data sources, enabling more capable and context-aware AI systems.
 
-```bash
-pip install mcp httpx
-```
+## How it Works 🤔
 
-2. Run the server:
+This repository uses a unique branch-based structure for learning:
 
-```bash
-python server.py
-```
+1.  **Each `project/*` branch covers a specific MCP feature or concept.**
+2.  **Within each branch, commits are ordered chronologically.** Follow the commits one by one to learn the topic step-by-step.
 
-## Usage
+Simply check out the branch for the topic you want to learn and walk through the commits!
 
-### With Claude Desktop
+## Available Topics (Branches) 📚
 
-You can install this server in Claude Desktop:
+Here are the topics currently available:
 
-```bash
-mcp install server.py
-```
+*   `project/sse`: Learn how to implement Server-Sent Events (SSE) with MCP.
+*   `project/langchain-mcp-adapters`: Explore integrating MCP with LangChain adapters.
+*   `project/docker-mcp`: Understand how to containerize your MCP applications using Docker.
 
-### With MCP Inspector
+*More topics might be added, so keep an eye out!*
 
-Alternatively, you can test it with the MCP Inspector:
+## Prerequisites 🛠️
 
-```bash
-mcp dev server.py
-```
+Before you start, make sure you have the following installed:
 
-## Tools and Resources
+*   🐍 Python (version 3.10 or higher)
+*   📦 `uv` (the fast Python package installer and resolver)
+*   ✨ Cursor IDE
+*   ☁️ Cloud Desktop
 
-### run_command
+## Getting Started ▶️
 
-This tool allows you to execute terminal commands and receive their output.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/emarco177/mcp-crash-course.git
+    cd mcp-crash-course
+    ```
+2.  **Choose a topic and check out the branch:**
+    ```bash
+    # Example for the SSE topic
+    git checkout project/sse
+    ```
+3.  **Follow the commits:** Use `git log --oneline --reverse` to see the chronological list of commits for the branch. Then, use `git checkout <commit_hash>` or your Git client to step through the history and learn.
 
-**Parameters:**
-- `command` (string): The terminal command to execute
+## Contributing 🤝
 
-**Returns:**
-- A dictionary containing:
-  - `stdout`: Standard output from the command
-  - `stderr`: Error output from the command
-  - `return_code`: The command's exit code
+Contributions are welcome! If you'd like to add a new topic or improve an existing one:
 
-### get_image_content
+1.  Fork the repository.
+2.  Create a new branch for your feature following the naming convention: `project/your-mcp-feature-name`.
+3.  Make your changes, ensuring each commit represents a logical step in the learning process.
+4.  Open a Pull Request against the `main` branch.
 
-This tool retrieves the content of an image file as a base64 encoded string.
-
-**Parameters:**
-- `file_path` (string): Path to the image file. Can be a full path or just the filename (will look in Desktop/pics)
-
-**Returns:**
-- A dictionary containing:
-  - `filename`: The name of the file
-  - `path`: The full path to the file
-  - `size_bytes`: The size of the file in bytes
-  - `mime_type`: The MIME type of the image
-  - `data_uri`: A data URI that can be used to display the image
-  - `base64`: The base64-encoded content of the image
-
-### pictures://{subfolder}
-
-This resource provides access to pictures in the Desktop/pics folder.
-
-**Parameters:**
-- `subfolder` (optional string): A subfolder within the pics directory
-
-**Returns:**
-- A dictionary containing:
-  - `path`: The full path to the directory
-  - `pictures`: An array of picture files with metadata
-  - `subdirectories`: An array of subdirectory names
-  - `count`: The number of pictures found
-
-## Security Note
-
-This server provides direct access to terminal commands and the filesystem, which presents security risks. Use this server only in controlled environments and with trusted clients.
+Happy learning! 🎉
