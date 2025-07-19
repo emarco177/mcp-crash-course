@@ -29,6 +29,7 @@ Here are the topics currently available:
 *   `project/sse`: Learn how to implement Server-Sent Events (SSE) with MCP.
 *   `project/langchain-mcp-adapters`: Explore integrating MCP with LangChain adapters.
 *   `project/docker-mcp`: Understand how to containerize your MCP applications using Docker.
+*   `project/prompts`: Learn how to implement and work with MCP Prompts, featuring FastMCP 2.0.
 
 *More topics might be added, so keep an eye out!*
 
