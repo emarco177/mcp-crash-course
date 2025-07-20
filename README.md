@@ -1,74 +1,185 @@
-# MCP Crash Course 🚀
-![MCP Tool Call Demo](/static/mcp-tool-call.gif)
+# Mini Pokédex Lite - FastMCP 2.0 Async Resources Demo
 
+A simple yet comprehensive example demonstrating **async MCP Resources** using FastMCP 2.0 and the Pokémon API.
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/EdenMarco177?style=social)](https://twitter.com/EdenMarco177)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+## 🎯 What This Demo Teaches
 
-[![udemy](https://img.shields.io/badge/MCP%20Udemy%20Course-ODSC%20Coupon%20%2412.99-brightgreen)](https://www.udemy.com/course/langgraph/?couponCode=JUNE-2025)
+This project demonstrates key MCP concepts using the **KISS principle** with modern async patterns:
 
-Welcome to the MCP Crash Course! This repository is designed to teach you the fundamentals and advanced concepts of the Model Context Protocol (MCP) in a hands-on way.
+- **Async Static Resources** - Fixed data endpoints (`poke://starters`, `poke://info`)
+- **Async Dynamic Resource Templates** - Parameterized URIs (`poke://pokemon/{id}`, `poke://types/{type}`)
+- **Async External API Integration** - Non-blocking HTTP requests with `httpx`
+- **Error Handling** - Proper `ResourceError` usage in async context
+- **JSON Responses** - Structured data return with async processing
 
-## What is MCP? 💡
+## 🚀 Quick Start
 
-The Model Context Protocol (MCP) helps connect AI-agentic applications powered by Large Language Models (LLMs) to external tools and data sources, enabling more capable and context-aware AI systems.
+### Prerequisites
 
-## How it Works 🤔
+- Python 3.11+
+- An MCP-compatible client (Claude Desktop, MCP Inspector, etc.)
 
-This repository uses a unique branch-based structure for learning:
+### Installation
 
-1.  **Each `project/*` branch covers a specific MCP feature or concept.**
-2.  **Within each branch, commits are ordered chronologically.** Follow the commits one by one to learn the topic step-by-step.
+```bash
+# Clone and setup
+git clone <this-repo>
+cd mcp-crash-course
 
-Simply check out the branch for the topic you want to learn and walk through the commits!
+# Install dependencies
+uv sync
+# or: pip install -e .
+```
 
-## Available Topics (Branches) 📚
+### Running the Server
 
-Here are the topics currently available:
+```bash
+python main.py
+```
 
-*   `project/sse`: Learn how to implement Server-Sent Events (SSE) with MCP.
-*   `project/langchain-mcp-adapters`: Explore integrating MCP with LangChain adapters.
-*   `project/docker-mcp`: Understand how to containerize your MCP applications using Docker.
-*   `project/prompts`: Learn how to implement and work with MCP Prompts, featuring FastMCP 2.0.
+The server runs on **stdio** and waits for MCP client connections.
 
-*More topics might be added, so keep an eye out!*
+## 📚 Available Resources
 
-## Prerequisites 🛠️
+| Resource URI | Description | Example |
+|--------------|-------------|---------|
+| `poke://starters` | List the 3 starter Pokémon | Static async data |
+| `poke://pokemon/{id}` | Get any Pokémon by ID/name | `poke://pokemon/25` |
+| `poke://types/{type}` | Get Pokémon by type (first 10) | `poke://types/fire` |
+| `poke://info` | API information & usage | Static metadata |
 
-Before you start, make sure you have the following installed:
+## 🔍 Example Usage
 
-*   🐍 Python (version 3.10 or higher)
-*   📦 `uv` (the fast Python package installer and resolver)
-*   ✨ Cursor IDE
-*   ☁️ Claude Desktop
+### With MCP Inspector
 
-## Getting Started ▶️
+```bash
+# Install MCP Inspector
+npm install -g @modelcontextprotocol/inspector
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/emarco177/mcp-crash-course.git
-    cd mcp-crash-course
-    ```
-2.  **Choose a topic and check out the branch:**
-    ```bash
-    # Example for the SSE topic
-    git checkout project/sse
-    ```
-3.  **Follow the commits:** Use `git log --oneline --reverse` to see the chronological list of commits for the branch. Then, use `git checkout <commit_hash>` or your Git client to step through the history and learn.
+# Connect to your server
+mcp-inspector python main.py
+```
 
-## Contributing 🤝
+### Testing Resources
 
-Contributions are welcome! If you'd like to add a new topic or improve an existing one:
+1. **List Starters**: `poke://starters`
+   ```json
+   {
+     "starters": [
+       {"id": "1", "name": "Bulbasaur", "uri": "poke://pokemon/1"},
+       {"id": "4", "name": "Charmander", "uri": "poke://pokemon/4"},
+       {"id": "7", "name": "Squirtle", "uri": "poke://pokemon/7"}
+     ],
+     "total": 3
+   }
+   ```
 
-1.  Fork the repository.
-2.  Create a new branch for your feature following the naming convention: `project/your-mcp-feature-name`.
-3.  Make your changes, ensuring each commit represents a logical step in the learning process.
-4.  Open a Pull Request against the `main` branch.
+2. **Get Pokémon Details**: `poke://pokemon/pikachu`
+   ```json
+   {
+     "id": 25,
+     "name": "Pikachu",
+     "height": 0.4,
+     "weight": 6.0,
+     "types": ["electric"],
+     "abilities": ["static", "lightning-rod"],
+     "base_stats": {
+       "hp": 35,
+       "attack": 55,
+       "defense": 40,
+       "special-attack": 50,
+       "special-defense": 50,
+       "speed": 90
+     },
+     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+   }
+   ```
 
-## License 📄
+3. **Get Pokémon by Type**: `poke://types/fire`
+   ```json
+   {
+     "type": "Fire",
+     "type_id": 10,
+     "pokemon_count": 73,
+     "showing": 10,
+     "pokemon": [
+       {"name": "Charmander", "uri": "poke://pokemon/charmander"},
+       {"name": "Charmeleon", "uri": "poke://pokemon/charmeleon"},
+       {"name": "Charizard", "uri": "poke://pokemon/charizard"}
+     ]
+   }
+   ```
 
-This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+## 🏗️ Code Structure
 
-Happy learning! 🎉
+### FastMCP 2.0 Async Features Used
 
+```python
+import httpx
+from fastmcp import FastMCP
+from fastmcp.exceptions import ResourceError
 
+app = FastMCP(name="mini-pokedex-lite")
+
+# Async static resource
+@app.resource("poke://starters")
+async def list_starters() -> dict:
+    return {"starters": [...]}
+
+# Async dynamic resource template
+@app.resource("poke://pokemon/{pokemon_id}")
+async def get_pokemon(pokemon_id: str) -> dict:
+    # Access pokemon_id parameter from URI
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        response = await client.get(f"https://pokeapi.co/api/v2/pokemon/{pokemon_id}")
+        
+        if response.status_code == 404:
+            raise ResourceError(f"Pokémon '{pokemon_id}' not found")
+        
+        return process_pokemon_data(response.json())
+```
+
+### Key Async Patterns
+
+- **Async Resource Decorator**: `@app.resource(uri)` with `async def` - Non-blocking data exposure
+- **URI Templates**: `{parameter}` syntax for dynamic resources
+- **Async HTTP Client**: `httpx.AsyncClient` for non-blocking API calls
+- **Context Managers**: `async with` for proper resource cleanup
+- **Error Handling**: Use `ResourceError` for client-friendly messages in async context
+- **Type Hints**: Help with IDE support and async function documentation
+- **Docstrings**: Become resource descriptions automatically
+
+## 🎓 Learning Goals
+
+After studying this demo, you'll understand:
+
+1. **Resource vs Tools**: Resources are read-only data, tools perform actions
+2. **Async Resources**: Non-blocking resource functions with `async def`
+3. **URI Design**: How to structure resource identifiers
+4. **Template Parameters**: Dynamic resource creation with async processing
+5. **Async HTTP**: Using `httpx` for non-blocking API calls
+6. **External APIs**: Integrating third-party data sources asynchronously
+7. **Error Patterns**: Proper exception handling in async MCP context
+
+## 🔧 Extending the Demo
+
+Try adding these async features:
+
+- **More Resources**: `poke://moves/{move}`, `poke://regions/{region}`
+- **Async Caching**: Store API responses with async cache libraries (aioredis)
+- **Connection Pooling**: Reuse httpx connections across requests
+- **Concurrent Requests**: Fetch multiple Pokémon data simultaneously
+- **Rate Limiting**: Implement async rate limiting for PokeAPI
+- **Background Tasks**: Cache warming or data preloading
+- **Streaming**: Large data streaming with async generators
+- **Database Integration**: Async database queries with SQLAlchemy/Tortoise
+
+## 📖 Related Resources
+
+- [FastMCP Documentation](https://github.com/jlowin/fastmcp)
+- [MCP Specification](https://spec.modelcontextprotocol.io/)
+- [PokéAPI Documentation](https://pokeapi.co/docs/v2)
+
+## 🏷️ Tags
+
+`#mcp` `#fastmcp` `#async` `#resources` `#api` `#demo` `#pokemon` `#tutorial` `#httpx` `#asyncio`
