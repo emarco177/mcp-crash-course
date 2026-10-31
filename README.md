@@ -5,7 +5,7 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/EdenMarco177?style=social)](https://twitter.com/EdenMarco177)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
-[![udemy](https://img.shields.io/badge/MCP%20Udemy%20Course%20Coupon%20%2412.99-brightgreen)](https://www.udemy.com/course/model-context-protocol/?couponCode=APRIL-2026)
+[![udemy](https://img.shields.io/badge/MCP%20Udemy%20Course%20Coupon%20%2412.99-brightgreen)](https://www.udemy.com/course/model-context-protocol/?couponCode=NOV-2026)
 
 Welcome to the MCP Crash Course! This repository is designed to teach you the fundamentals and advanced concepts of the Model Context Protocol (MCP) in a hands-on way.
 
